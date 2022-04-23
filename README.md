@@ -9,7 +9,7 @@ This script was improved by coRtyTV while using for Valeo Roleplay [GERMAN ROLEP
 
 It's the base of my targetsystem where you can click on players, vehicle and prepared to add new entities like you want. (Will be sell at tebex)
 
-Discord coRty: https://discord.com/invite/AUNtExxgJx
-Discord Valeo: https://discord.io/ValeoRP
-Tebex: https://cortytv.tebex.io/
+- Discord coRty: https://discord.com/invite/AUNtExxgJx
+- Discord Valeo: https://discord.io/ValeoRP
+- Tebex: https://cortytv.tebex.io/
 

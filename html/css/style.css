@@ -1,0 +1,38 @@
+.target-wrapper {
+    display: none;
+}
+
+.target-eye {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    font-size: 3vh;
+}
+
+.target-label-wrapper {
+    position: absolute;
+    right: 63vh;
+    top: 53vh;
+    /*width: 11vh;*/
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    border-radius: 25px;
+}
+
+.target-label {
+  list-style: none;
+  font-size: 1.3vh;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: white;
+  text-transform: uppercase;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.target-icon {
+    color: rgb(255, 128, 0);
+}

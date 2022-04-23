@@ -2,8 +2,6 @@ local Entities = {}
 local Models = {}
 local Zones = {}
 local Bones = {}
-local Motels = {}
-local Owned_Motels = {}
 ESX = nil
 
 Citizen.CreateThread(function()
@@ -11,9 +9,7 @@ Citizen.CreateThread(function()
 		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 		Citizen.Wait(0)
 	end
-	ESX.TriggerServerCallback('ctv_motel:getMotels', function(motels)
-		Motels = motels
-	end)
+
 end)
 
 Citizen.CreateThread(function()
@@ -27,12 +23,6 @@ end)
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(playerData)
 	ESX.PlayerData.job = playerData.job
-	ESX.TriggerServerCallback('ctv_motel:getMotels', function(motels)
-		Motels = motels
-	end)
-	ESX.TriggerServerCallback('ctv_motel:getOwnedMotels', function(owned_motels)
-		Owned_Motels = owned_motels
-	end)
 end)
 
 RegisterNetEvent('esx:setJob')
@@ -184,25 +174,12 @@ function playerTargetEnable()
 					if #(plyCoords - Zones[_].center) <= zone["targetoptions"]["distance"] then
 						local options = Zones[_]["targetoptions"]["options"]
 						local send_options = {}
-						local Motel = {}
 						local found = false
 						for l,b in pairs(options) do
-							if b.room ~= nil then
-								for i=1, #Owned_Motels do
-									local owned_motel = Owned_Motels[i]
-									if owned_motel.name == b.room then
-										Motel.state = owned_motel.state
-										found = true
-										break
-									end
-								end
-								if not found then
-									Motel.state = 0
-								end
-							end
+							
 							if (b.job == nil or b.job == ESX.PlayerData.job.name or b.job[ESX.PlayerData.job.name]) and (b.job == nil or b.job[ESX.PlayerData.job.name] == nil or b.job[ESX.PlayerData.job.name] <= ESX.PlayerData.job.grade) then
 								if (b.required_item == nil) or (b.required_item and exports['linden_inventory']:CountItems(b.required_item)[b.required_item] > 0) then
-									if b.state == nil or (Motel ~= nil and (b.state == Motel.state)) then
+									if b.state == nil then
 										if b.canInteract == nil or b.canInteract() then
 											local slot = #send_options + 1
 											send_options[slot] = b
